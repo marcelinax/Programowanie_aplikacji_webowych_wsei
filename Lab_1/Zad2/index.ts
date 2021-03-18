@@ -23,7 +23,12 @@ function logPerson(person: Person) {
 }
 
 function filterPersons(persons: Person[], criteria: any): Person[] {
-    return persons.filter(el=> Object.keys(el) ) 
+    return persons.filter((el) => {
+        for (let i = 0; i < Object.keys(criteria).length; i++) {
+            if (el[Object.keys(criteria)[i] as keyof Person] != Object.values(criteria)[i]) return false;
+        }
+        return true;
+    });
 }
 
         
@@ -32,7 +37,7 @@ function filterPersons(persons: Person[], criteria: any): Person[] {
 
 // TODO:
 // 1. Przy pomocy funkcji logPerson wypisać osoby z tablicy users i admins (patrz foreach)
-users.forEach(u=> logPerson(u));
+users.forEach(logPerson);
 admins.forEach(a=> logPerson(a));
 
 // 2. Złączyć tablice users i admins i wypisać zawartość złączonej tablicy na konsoli (patrz operator spread)
