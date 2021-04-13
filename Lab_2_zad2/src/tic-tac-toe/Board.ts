@@ -1,10 +1,16 @@
+import AI from "./AI";
 import Cell from "./Cell";
 import { Sign } from "./enums/Sign";
 
 export default class Board {
   cells: Cell[] = [];
   currentSign: Sign = Sign.X;
-  constructor() {
+  moveCounter: number = 0;
+  isGameOver: boolean = false;
+  ai: AI;
+  gameWithAI: boolean = true;
+  constructor(areYouPlayingVsAI: boolean) {
+    this.gameWithAI = areYouPlayingVsAI;
     const cellsElements: NodeListOf<HTMLDivElement> = document.querySelectorAll(
       ".cell"
     );
@@ -15,9 +21,10 @@ export default class Board {
         this.makeChoice(cell);
       });
     });
+    if (this.gameWithAI) this.ai = new AI(this);
   }
   makeChoice(cell: Cell) {
-    if (cell.sign !== null) return;
+    if (cell.sign !== null || this.isGameOver) return;
     switch (this.currentSign) {
       case Sign.X:
         cell.setSign(this.currentSign);
@@ -28,7 +35,15 @@ export default class Board {
         this.currentSign = Sign.X;
         break;
     }
+    this.moveCounter++;
     this.checkWin();
+    if (
+      this.gameWithAI &&
+      this.currentSign == Sign.O &&
+      this.moveCounter < 9 &&
+      !this.isGameOver
+    )
+      this.ai.makeAIChoice();
   }
   checkWin() {
     for (let i = 0; i < 9; i += 3) {
@@ -59,8 +74,12 @@ export default class Board {
         this.cells[4].sign === this.cells[6].sign
       )
         this.gameOver();
+    if (this.moveCounter == 9 && !this.isGameOver) {
+      this.gameOver(true);
+    }
   }
-  gameOver() {
+  gameOver(draw = false) {
+    this.isGameOver = true;
     const gameOverElement = document.querySelector(".game-over-box");
     if (gameOverElement) {
       switch (this.currentSign) {
@@ -71,6 +90,10 @@ export default class Board {
           gameOverElement.innerHTML = "<h1>X wins!</h2>";
           break;
       }
+      if (draw) gameOverElement.innerHTML = "<h1>DRAW!</h2>";
+
+      gameOverElement.innerHTML +=
+        "<p>To play again press F5 on you keyboard!</p>";
     }
   }
 }
