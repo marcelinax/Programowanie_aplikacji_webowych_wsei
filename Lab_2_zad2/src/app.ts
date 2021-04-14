@@ -3,6 +3,7 @@ import Board from "./tic-tac-toe/Board";
 class App {
   constructor() {
     this.initButtons();
+    this.initNewGame();
   }
   private createGameWithAI(): void {
     new Board(true);
@@ -24,6 +25,11 @@ class App {
   }
   private hideBtnsBox() {
     document.querySelector(".btns-box").classList.toggle("hide");
+  }
+  private initNewGame() {
+    document.getElementById("new-game-btn").addEventListener("click", () => {
+      location.reload();
+    });
   }
 }
 new App();

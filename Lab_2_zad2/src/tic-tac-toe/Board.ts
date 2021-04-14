@@ -91,9 +91,6 @@ export default class Board {
           break;
       }
       if (draw) gameOverElement.innerHTML = "<h1>DRAW!</h2>";
-
-      gameOverElement.innerHTML +=
-        "<p>To play again press F5 on you keyboard!</p>";
     }
   }
 }
