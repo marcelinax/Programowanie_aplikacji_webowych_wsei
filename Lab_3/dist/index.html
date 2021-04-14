@@ -8,12 +8,49 @@
   </head>
   <body>
     <main>
-      <h1
-        >Welcome to my game portal by Marcelina Sitko
-        ❤🧡💛💚💙💜🤎🖤🤍❣💕💞💓💗💖💘💝💟💌</h1
-      >
-      <button id="change-theme-btn">CHANGE THEME</button>
-      <button id="xoxoxo-game">XOXOXO</button>
+      <div class="game-menu">
+        <div class="toggler">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            viewBox="0 0 24 24"
+          >
+            <path d="M4 6H20V8H4zM4 11H20V13H4zM4 16H20V18H4z"></path>
+          </svg>
+        </div>
+        <div class="games">
+          <div class="game-btn" id="xoxoxo-game">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="50"
+              height="50"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20.937,7.53C19.227,4.119,15.803,2,12,2C6.486,2,2,6.486,2,12s4.486,10,10,10c3.803,0,7.227-2.119,8.937-5.53 c0.238-0.475,0.063-1.053-0.397-1.316L15.017,12l5.522-3.153C21,8.583,21.175,8.005,20.937,7.53z M12.504,11.132 C12.192,11.31,12,11.641,12,12s0.192,0.69,0.504,0.868l6.173,3.525C17.205,18.639,14.724,20,12,20c-4.411,0-8-3.589-8-8 s3.589-8,8-8c2.724,0,5.205,1.361,6.677,3.606L12.504,11.132z"
+              ></path>
+              <circle cx="11.5" cy="7.5" r="1.5"></circle>
+            </svg>
+            <span>TTT</span>
+          </div>
+        </div>
+        <div class="theme-toggler toggler" id="change-theme-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20 14c-.092.064-2 2.083-2 3.5 0 1.494.949 2.448 2 2.5.906.044 2-.891 2-2.5C22 16 20.092 14.064 20 14zM9.586 20c.378.378.88.586 1.414.586s1.036-.208 1.414-.586l7-7-.707-.707L11 4.586 8.707 2.293 7.293 3.707 9.586 6 4 11.586C3.622 11.964 3.414 12.466 3.414 13S3.622 14.036 4 14.414L9.586 20zM11 7.414L16.586 13H5.414L11 7.414z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <div class="content">
+        <div id="game-box"></div>
+      </div>
     </main>
     <script src="bundle.js"></script>
   </body>

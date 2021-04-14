@@ -1,4 +1,5 @@
 import Board from "./Board";
+import { Games } from "../../enums/games.enum";
 
 export default class TicTacToe {
   constructor() {
@@ -14,7 +15,7 @@ export default class TicTacToe {
 
     <div class="container">
       <button id="new-game-btn">NEW GAME</button>
-      <div class="game-over-box"> </div>
+      <div class="game-over-box"></div>
       <div class="board">
         <div class="cell"></div>
         <div class="cell"></div>
@@ -51,7 +52,7 @@ export default class TicTacToe {
   }
   private initNewGame() {
     document.getElementById("new-game-btn").addEventListener("click", () => {
-      location.reload();
+      (window as any).app.initGame(Games.TicTacToe);
     });
   }
 }

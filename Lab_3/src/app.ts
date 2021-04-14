@@ -7,6 +7,7 @@ import TicTacToe from "./games/tic-tac-toe/TicTacToe";
 class App {
   constructor() {
     this.initGameButtons();
+    this.initGameMenuToggler();
     this.initThemeChangeBtn();
   }
 
@@ -17,23 +18,33 @@ class App {
   }
 
   initGame(game: Games) {
+    this.clearGameBox();
     switch (game) {
       case Games.TicTacToe:
-        document.body.innerHTML = `<div id="game-box"></div>`;
         new TicTacToe();
         break;
     }
+  }
+
+  clearGameBox(): void {
+    document.getElementById("game-box").innerHTML = "";
   }
 
   initThemeChangeBtn() {
     document
       .getElementById("change-theme-btn")
       .addEventListener("click", () => {
-        document.querySelectorAll("*").forEach((e) => {
-          e.classList.toggle("light-mode");
-        });
+        document.querySelector("body").classList.toggle("secondary-theme");
+      });
+  }
+
+  initGameMenuToggler() {
+    document
+      .querySelector(".game-menu .toggler")
+      .addEventListener("click", () => {
+        document.querySelector(".game-menu").classList.toggle("active");
       });
   }
 }
 
-new App();
+(window as any).app = new App();

@@ -84,16 +84,13 @@ export default class Board {
     if (gameOverElement) {
       switch (this.currentSign) {
         case Sign.X:
-          gameOverElement.innerHTML = "<h1>O wins!</h2>";
+          gameOverElement.innerHTML = "<h1>O wins!</h1>";
           break;
         case Sign.O:
-          gameOverElement.innerHTML = "<h1>X wins!</h2>";
+          gameOverElement.innerHTML = "<h1>X wins!</h1>";
           break;
       }
-      if (draw) gameOverElement.innerHTML = "<h1>DRAW!</h2>";
-
-      gameOverElement.innerHTML +=
-        "<p>To play again press F5 on you keyboard!</p>";
+      if (draw) gameOverElement.innerHTML = "<h1>DRAW!</h1>";
     }
   }
 }
