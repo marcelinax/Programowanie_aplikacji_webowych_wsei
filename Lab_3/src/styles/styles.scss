@@ -1,97 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-@import "./themes/default.scss";
-@import "./mixins.scss";
 
 //game styles
-@import "./TicTacToe.scss";
+@import "games/TicTacToe";
 #game-box {
-  margin: auto;
-  width: 1150px;
-  height: 750px;
-  position: relative;
-  border-radius: 15px;
   @include box-shadow;
+  @include game-box-size;
+  margin: auto;
+  position: relative;
 }
 
 * {
   @include padding-margin-0;
-  @include PoppinsFont;
+  @include poppins-font;
 }
 
-body {
-  background-color: $background-color;
-  color: $text-color;
-  &.secondary-theme {
-    @include secondary-theme;
+html {
+  &.light {
+    @import "themes/light";
+    @import "themesStyles";
   }
-}
-
-main {
-  display: flex;
-
-  .game-menu {
-    padding: 2rem;
-    min-width: 50px;
-    max-width: 50px;
-    background-color: $game-menu-bg;
-    @include box-shadow;
-    height: calc(100vh - 4rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: 0.3s all;
-    &.active {
-      min-width: 350px;
-      max-width: 350px;
-      .game-btn {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .toggler {
-      width: 50px;
-      height: 50px;
-      cursor: pointer;
-    }
-
-    .game-btn {
-      margin: auto;
-      width: 140px;
-      height: 140px;
-      opacity: 0;
-      transform: scale(0.1);
-      transition: 0.3s all;
-      background-color: $icons-color;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px;
-      @include box-shadow;
-      cursor: pointer;
-
-      svg {
-        margin: auto;
-        fill: white;
-      }
-      span {
-        display: block;
-        padding-bottom: 1rem;
-      }
-    }
-
-    svg {
-      fill: $icons-color;
-    }
-  }
-
-  .content {
-    padding: 2rem;
-    width: 100%;
-    height: calc(100vh - 4rem);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &.default {
+    @import "themes/default";
+    @import "themesStyles";
   }
 }

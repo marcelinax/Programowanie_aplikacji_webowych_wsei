@@ -1,0 +1,67 @@
+@import "mixins";
+@import "variables";
+
+body {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+main {
+  display: flex;
+
+  .game-menu {
+    @include box-shadow;
+    @include transition;
+    @include flex-space-between-column;
+    padding: $padding-default;
+    min-width: 50px;
+    max-width: 50px;
+    background-color: $game-menu-bg;
+    height: calc(100vh - #{$padding-default} * 2);
+    &.active {
+      min-width: 350px;
+      max-width: 350px;
+      .game-btn {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .toggler {
+      @include icon-size($sidebar-icon-size);
+      cursor: pointer;
+    }
+
+    .game-btn {
+      @include box-shadow;
+      @include transition;
+      @include flex-center-column;
+      @include icon-size($sidebar-game-icon-size);
+      @include icon-color($icons-color);
+      margin: auto;
+      opacity: 0;
+      transform: scale(0.1);
+      border-radius: 5px;
+      cursor: pointer;
+      svg {
+        margin: auto;
+        fill: white;
+      }
+      span {
+        display: block;
+        padding-bottom: calc(#{$padding-default} / 2);
+      }
+    }
+
+    svg {
+      @include icon-fill-color($icons-color);
+    }
+  }
+
+  .content {
+    @include flex-center;
+    padding: $padding-default;
+    width: 100%;
+    height: calc(100vh - #{$padding-default} * 2);
+  }
+}

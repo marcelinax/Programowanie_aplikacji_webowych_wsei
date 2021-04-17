@@ -34,7 +34,8 @@ class App {
     document
       .getElementById("change-theme-btn")
       .addEventListener("click", () => {
-        document.querySelector("body").classList.toggle("secondary-theme");
+        document.querySelector("html").classList.toggle("default");
+        document.querySelector("html").classList.toggle("light");
       });
   }
 

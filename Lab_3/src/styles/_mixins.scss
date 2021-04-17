@@ -1,0 +1,63 @@
+@import "variables";
+
+@mixin padding-margin-0 {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin box-shadow {
+  box-shadow: 0 0 15px rgba($box-shadow-color, 0.2);
+}
+
+@mixin poppins-font {
+  font-family: "Poppins", sans-serif;
+}
+
+@mixin transition {
+  transition: $transition-time;
+}
+
+@mixin flex-items-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center {
+  @include flex-items-center;
+  justify-content: center;
+}
+
+@mixin flex-space-between {
+  @include flex-items-center;
+  justify-content: space-between;
+}
+
+@mixin flex-space-between-column {
+  @include flex-items-center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin icon-size($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin icon-color($icons-color) {
+  background-color: $icons-color;
+}
+
+@mixin icon-fill-color($icons-color) {
+  fill: $icons-color;
+}
+
+@mixin game-box-size {
+  width: $game-box-width;
+  height: $game-box-height;
+  border-radius: $game-box-border-radius;
+}
