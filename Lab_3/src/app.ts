@@ -3,6 +3,8 @@ import "./styles/styles.scss";
 import Board from "./games/tic-tac-toe/Board";
 import { Games } from "./enums/games.enum";
 import TicTacToe from "./games/tic-tac-toe/TicTacToe";
+import { disabled } from "./decorators/disabled";
+import { gameCreated } from "./decorators/gameCreated";
 
 class App {
   constructor() {
@@ -21,9 +23,13 @@ class App {
     this.clearGameBox();
     switch (game) {
       case Games.TicTacToe:
-        new TicTacToe();
+        this.initTicTacToe();
         break;
     }
+  }
+
+  initTicTacToe() {
+    new TicTacToe();
   }
 
   clearGameBox(): void {

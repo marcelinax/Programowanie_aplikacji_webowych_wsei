@@ -1,5 +1,6 @@
 import Board from "./Board";
 import { Games } from "../../enums/games.enum";
+import { withAi } from "../../decorators/withAi";
 
 export default class TicTacToe {
   constructor() {
@@ -29,12 +30,16 @@ export default class TicTacToe {
       </div>
     </div>`;
   }
-  private createGameWithAI(): void {
-    new Board(true);
+
+  @withAi
+  private createGameWithAI(withAi = false): void {
+    new Board(withAi);
   }
-  private createGameWithPlayer(): void {
-    new Board(false);
+
+  private createGameWithPlayer(withAi = false): void {
+    new Board(withAi);
   }
+
   private initButtons() {
     const playerBtn = document.getElementById("player-btn");
     const aiBtn = document.getElementById("ai-btn");

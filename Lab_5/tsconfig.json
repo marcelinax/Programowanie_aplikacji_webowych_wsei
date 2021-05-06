@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "ES5",
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+  }
+}
