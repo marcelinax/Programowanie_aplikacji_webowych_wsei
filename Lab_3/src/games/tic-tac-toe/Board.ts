@@ -1,8 +1,13 @@
 import AI from "./AI";
 import Cell from "./Cell";
+import Move from "./storage/Move";
+import { MovesStorage } from "./storage/MovesStorage";
+import SessionStorage from "./storage/SessionStorage";
 import { Sign } from "./enums/Sign";
 
 export default class Board {
+  storage: MovesStorage = new SessionStorage();
+  moves: Move[] = [];
   cells: Cell[] = [];
   currentSign: Sign = Sign.X;
   moveCounter: number = 0;
@@ -22,9 +27,55 @@ export default class Board {
       });
     });
     if (this.gameWithAI) this.ai = new AI(this);
+    this.loadMoves();
+    this.initGoBackOneMove();
   }
+
+  clearMoves(): void {
+    this.moves = [];
+    this.storage.saveMoves(this.moves);
+  }
+
+  goBackOneMove(): void {
+    this.moves.pop();
+    this.storage.saveMoves(this.moves);
+    this.loadMoves();
+  }
+
+  initGoBackOneMove(): void {
+    document
+      .getElementById("go-back-one-move")
+      .addEventListener("click", () => {
+        this.goBackOneMove();
+      });
+  }
+
+  loadMoves(): void {
+    this.cells.forEach((c) => c.setSign(null));
+    this.moves = this.storage.getMoves();
+    if (this.moves.length > 0) {
+      this.currentSign = this.moves[this.moves.length - 1].sign;
+      switch (this.currentSign) {
+        case Sign.X:
+          this.currentSign = Sign.O;
+          break;
+        case Sign.O:
+          this.currentSign = Sign.X;
+          break;
+      }
+      this.moveCounter = this.moves.length - 1;
+      this.moves.forEach((m) => {
+        this.cells[m.index].setSign(m.sign);
+      });
+    }
+  }
+
   makeChoice(cell: Cell) {
     if (cell.sign !== null || this.isGameOver) return;
+
+    this.moves.push(new Move(this.cells.indexOf(cell), this.currentSign));
+    this.storage.saveMoves(this.moves);
+
     switch (this.currentSign) {
       case Sign.X:
         cell.setSign(this.currentSign);
@@ -92,5 +143,6 @@ export default class Board {
       }
       if (draw) gameOverElement.innerHTML = "<h1>DRAW!</h1>";
     }
+    this.clearMoves();
   }
 }

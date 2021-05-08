@@ -6,7 +6,7 @@ export default class Cell {
   constructor(cell: HTMLDivElement) {
     this.cell = cell;
   }
-  setSign(sign: Sign) {
+  setSign(sign: Sign | null) {
     this.sign = sign;
     switch (sign) {
       case Sign.X:
@@ -15,6 +15,8 @@ export default class Cell {
       case Sign.O:
         this.cell.innerHTML = "O";
         break;
+      default:
+        this.cell.innerHTML = "";
     }
   }
 }

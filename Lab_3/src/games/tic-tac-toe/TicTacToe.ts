@@ -3,6 +3,8 @@ import { Games } from "../../enums/games.enum";
 import { withAi } from "../../decorators/withAi";
 
 export default class TicTacToe {
+  board: Board;
+
   constructor() {
     this.drawGame();
     this.initButtons();
@@ -28,16 +30,17 @@ export default class TicTacToe {
         <div class="cell"></div>
         <div class="cell"></div>
       </div>
+      <button id="go-back-one-move">BACK</button>
     </div>`;
   }
 
   @withAi
   private createGameWithAI(withAi = false): void {
-    new Board(withAi);
+    this.board = new Board(withAi);
   }
 
   private createGameWithPlayer(withAi = false): void {
-    new Board(withAi);
+    this.board = new Board(withAi);
   }
 
   private initButtons() {
@@ -57,6 +60,7 @@ export default class TicTacToe {
   }
   private initNewGame() {
     document.getElementById("new-game-btn").addEventListener("click", () => {
+      this.board.clearMoves();
       (window as any).app.initGame(Games.TicTacToe);
     });
   }
