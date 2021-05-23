@@ -1,0 +1,57 @@
+###
+GET http://localhost:3000/products HTTP/1.1
+
+###
+GET http://localhost:3000/categories HTTP/1.1
+
+###
+
+POST http://localhost:3000/categories HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Telewizorya"
+}
+
+###
+
+PUT http://localhost:3000/categories HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Telewizory"
+}
+
+###
+DELETE http://localhost:3000/categories/1 HTTP/1.1
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Telewizor SONY",
+    "categoryId": 1,
+    "description": "Telewizor plazmowy",
+    "price": 5000
+}
+
+###
+
+PUT  http://localhost:3000/products HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Telewizor APPLE",
+    "categoryId": 1,
+    "description": "Telewizor LCD",
+    "price": 5500
+}
+
+###
+DELETE http://localhost:3000/products/1 HTTP/1.1
